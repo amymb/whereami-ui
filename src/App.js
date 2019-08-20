@@ -120,7 +120,8 @@ class App extends Component {
           newState.center = location;
           newState.locations[`${prevState.current_user.username}`] = location;
           return newState;
-        });
+        }, (msg) => alert('Please enable your GPS position feature.'),
+        {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
         axios({ method: 'POST', 
           url: `${process.env.REACT_APP_SERVER_URL}/location`,
           headers: {
